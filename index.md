@@ -60,6 +60,7 @@
 | 方法 | 說明 |
 |------|------|
 | [Mouse Tracking Pipeline](wiki/howto/mouse-tracking-pipeline.md) | 從前端捕捉到 S3 儲存到特徵工程的完整管線 |
+| [PDF Ingest 操作程序](wiki/howto/pdf-ingest-procedure.md) | 收到 PDF 時如何分批讀取、Compile、Link、更新 index/log 的完整流程 |
 
 ---
 

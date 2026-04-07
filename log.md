@@ -49,3 +49,14 @@
   - 更新：`wiki/evolution/research-method-evolution.md`
   - 更新：`index.md`（v0.1 → v0.2）
 - **摘要**：首次完整 Ingest。研究核心為以 Promotion-Efficacy Fit 干預（RFT × Self-efficacy × RAM slider）取代 Fear Appeal 減少健康誤報，同時以 MsgPack + S3 建構鼠標追蹤資料管線；2026-04-07 新增對 Signal Transform 策略的系統整理，結論為鼠標移動缺乏明確頻率-行為映射。
+
+---
+
+## 2026-04-07 — Add howto
+
+- **操作**：新增操作手冊
+- **來源**：無（整理前次 PDF Ingest 經驗）
+- **產出**：
+  - 新增 `wiki/howto/pdf-ingest-procedure.md`（PDF 分批讀取→Compile→Link→更新 index/log 的完整 SOP）
+  - 更新 `index.md`（新增 howto 條目）
+- **摘要**：將 PDF Ingest 的操作步驟記錄為可複用的 howto 頁面，供未來對話直接參照。
