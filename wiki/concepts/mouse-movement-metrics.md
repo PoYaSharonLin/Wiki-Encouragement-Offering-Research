@@ -19,45 +19,44 @@ source: raw/google-slides/Sharon Research Meeting-2026-04-07.pdf
 
 ## 四種採樣方法（決定 DB Schema）
 
-| 方法 | 說明 | 適配 Signal Processing |
-|------|------|----------------------|
-| Window size（固定點數） | 每 N 點一組 | STFT |
-| Fixed timing（固定時間） | 如每 16.67ms（60 FPS） | DFT |
-| Fixed pixel range（固定像素距離） | 如每 >3px 記錄一次 | 2D-DFT |
-| Event type changes（事件類型切換） | mousemove/mousedown/click | EMD |
+| Method | Description | Signal Processing Fit | Citation |
+|--------|-------------|----------------------|----------|
+| Every motion downsampled (e.g., 5 pts) | Window of fixed point count per motion segment | STFT | Khan et al. (2024) |
+| Motions sampled at given frequency 👾 | Fixed interval, e.g., every 16.67 ms (60 FPS) | DFT | Khan et al. (2024); Mazza et al. (2020) |
+| Fixed pixel ranges in digital signing 🖌️ | Record when cursor moves >N px, common in e-signature | 2D-DFT | Nossam et al. (2024) |
+| Event type changes | Segment by mousemove / mousedown / click transitions | EMD | Khan (2024); Weinmann et al. (2022) |
 
 **決策（2026-03-31）**：採樣方法決定資料庫 schema 與可用的特徵工程工具。
 
 ## 文獻中的主要指標分類
 
 ### Distance（距離）
-- Traveled Distance / Curve length
-- Deviation Distance
-- Straightness / Efficiency = straight-line / actual path
+- Traveled Distance / Curve length (Khan et al., 2024)
+- Deviation Distance (Khan et al., 2024; Weinmann et al., 2022)
+- Straightness / Efficiency = straight-line / actual path (Khan et al., 2024; Weinmann et al., 2022)
 
 ### Time（時間）
-- Reaction Time (RT)：問題出現到點擊回應的時間
-- Maximum Deviation Time (MD-time)：到達最大偏移的時間
+- Reaction Time (RT)：問題出現到點擊回應的時間 (Khan et al., 2024; Mazza et al., 2020)
+- Maximum Deviation Time (MD-time)：到達最大偏移的時間 (Khan et al., 2024)
 
 ### Velocity（速度）
-- Velocity / Horizontal / Vertical velocity
-- Tangential / Angular velocity
+- Movement Speed (Weinmann et al., 2022)
+- Velocity / Horizontal / Vertical velocity (Khan et al., 2024)
+- Tangential / Angular velocity (Khan et al., 2024)
 
 ### Acceleration（加速度）
-- Horizontal / Vertical acceleration
-- Tangential Jerk（加加速度）
+- Horizontal / Vertical acceleration (Khan et al., 2024)
+- Tangential Jerk（加加速度）(Khan et al., 2024)
 
 ### Curvature（曲率）
-- Curvature / Rate of Curvature
-- Curvature Velocity
+- Curvature / Rate of Curvature (Khan et al., 2024; Mazza et al., 2020)
+- Curvature Velocity (Khan et al., 2024)
 
 ### Shapes（形狀特徵）
-- Angle of Movement / Total Angles / Bending Energy
-- Self-Intersection
-- Jitter（抖動）
-- Central Moments
-
-來源：Khan et al. (2024) — Mouse dynamics behavioral biometrics survey
+- Angle of Movement / Total Angles / Bending Energy (Khan et al., 2024)
+- Self-Intersection (Khan et al., 2024)
+- Jitter（抖動）(Khan et al., 2024; Mazza et al., 2020)
+- Central Moments (Khan et al., 2024)
 
 ## 本研究採用的關鍵指標（2026-03-31 決策）
 
@@ -82,3 +81,15 @@ Signal Transform 的潛在用途仍在於：
 - [[wiki/concepts/ram-slider.md]]
 - [[wiki/references/weinmann-2022.md]]
 - [[wiki/references/khan-2024.md]]
+
+---
+
+## References
+
+Khan, S., Devlen, C., Manno, M., & Hou, D. (2024). Mouse dynamics behavioral biometrics: A survey. *ACM Computing Surveys*, *56*(6), 1–33.
+
+Mazza, C., Monaro, M., Burla, F., Colasanti, M., Orrù, G., Ferracuti, S., & Roma, P. (2020). Use of mouse-tracking software to detect faking-good behavior on personality questionnaires: an explorative study. *Scientific Reports*, *10*(1), 4835.
+
+Weinmann, M., Valacich, J. S., Schneider, C., Jenkins, J. L., & Hibbeln, M. (2022). The path of the righteous: Using trace data to understand fraud decisions in real time. *MIS Quarterly*, *46*(4), 2317–2336.
+
+Nossam, S. C., Katakam, R. A., Pulastya, G., & Jayan, S. (2024). Signature forgery detection and verification using deep learning techniques. In *2024 15th International Conference on Computing Communication and Networking Technologies (ICCCNT)* (pp. 1–6). IEEE.

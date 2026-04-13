@@ -1,205 +1,205 @@
-# CLAUDE.md — 系統提示詞與 Schema 規則
+# CLAUDE.md — System Prompt & Schema Rules
 
-> 本檔案是 LLM 操作此 Wiki 的完整行為規範。每次執行任何指令前，LLM 必須先讀取此檔案。
-
----
-
-## 一、核心理念
-
-### 來源一：Karpathy LLM Wiki 設計原則
-- **原始層永不修改**：`raw/` 裡的所有檔案只能讀取，不能編輯或刪除
-- **知識層持續演進**：`wiki/` 是唯一允許 LLM 寫入與更新的地方
-- **每次操作必留紀錄**：任何 ingest、update、query 都必須在 `log.md` 寫入時間軸條目
-- **index.md 是門面**：每次更新後必須同步更新 `index.md` 的相關區塊
-- **內部連結優先**：wiki 內部頁面應儘量以 `[[相對路徑]]` 或 `[文字](相對路徑)` 互相連結
-
-### 來源二：gigaai.studio 兩層分離 + 閉環管線
-- **L0 原始層**（`raw/`）：所有外部素材的進入點，只分類不修改
-- **L1 知識層**（`wiki/`）：LLM 主動轉化與建立關係的結構化知識庫
-- **閉環原則**：知識庫越用越強化，每次 Query 的有價值發現都要回寫進 wiki
+> This file is the complete behavioral specification for the LLM operating this Wiki. The LLM must read this file before executing any command.
 
 ---
 
-## 二、五階段管線（每次 Ingest 都要完整執行）
+## 1. Core Philosophy
+
+### Source 1: Karpathy LLM Wiki Design Principles
+- **Raw layer is immutable**: All files in `raw/` are read-only — never edit or delete them
+- **Knowledge layer evolves continuously**: `wiki/` is the only place the LLM is allowed to write and update
+- **Every operation must be logged**: Any ingest, update, or query must append a timestamped entry to `log.md`
+- **index.md is the front door**: After every update, the relevant sections of `index.md` must be kept in sync
+- **Prefer internal links**: Wiki pages should cross-reference each other using `[[relative-path]]` or `[text](relative-path)` wherever possible
+
+### Source 2: gigaai.studio Two-Layer Separation + Closed-Loop Pipeline
+- **L0 Raw Layer** (`raw/`): Entry point for all external materials — categorize only, never modify
+- **L1 Knowledge Layer** (`wiki/`): Structured knowledge base where the LLM actively transforms content and builds relationships
+- **Closed-loop principle**: The knowledge base strengthens with use — every valuable insight from a Query must be written back into the wiki
+
+---
+
+## 2. Five-Stage Pipeline (run in full for every Ingest)
 
 ```
 Capture → Compile → Link → Query → Feedback → Lint
 ```
 
-| 階段 | 動作 | 輸出位置 |
-|------|------|----------|
-| **Capture** | 素材放入 `raw/`，不分類不修改 | `raw/` |
-| **Compile** | LLM 分析素材，生成結構化頁面 | `wiki/concepts/`、`wiki/references/`、`wiki/howto/` |
-| **Link** | 建立雙向連結，更新相關頁面的 See Also | 各 wiki 頁面 |
-| **Query** | 交叉檢索所有筆記回答問題 | `wiki/logs/YYYY-MM-DD-qna-XXX.md` |
-| **Feedback** | 有價值的發現回寫入 wiki | 相關 wiki 頁面 |
-| **Lint** | 檢查斷連結、矛盾、過時內容 | `log.md` 的 Lint 區段 |
+| Stage | Action | Output Location |
+|-------|--------|-----------------|
+| **Capture** | Place material in `raw/` without categorizing or modifying | `raw/` |
+| **Compile** | LLM analyzes material and generates structured pages | `wiki/concepts/`, `wiki/references/`, `wiki/howto/` |
+| **Link** | Establish bidirectional links, update See Also on related pages | All wiki pages |
+| **Query** | Cross-reference all notes to answer questions | `wiki/logs/YYYY-MM-DD-qna-XXX.md` |
+| **Feedback** | Write valuable findings back into the wiki | Relevant wiki pages |
+| **Lint** | Check for broken links, contradictions, and stale content | Lint section of `log.md` |
 
 ---
 
-## 三、資料夾結構與用途
+## 3. Folder Structure & Purpose
 
 ```
 RESEARCH-WIKI/
 ├── raw/
-│   ├── done/              ← 處理完的原始檔移到這裡（只移動，不修改）
-│   └── google-slides/     ← 每周匯出的 Google Slides（YYYY-MM-DD-vX.md）
+│   ├── done/              ← Processed source files moved here (move only, never modify)
+│   └── google-slides/     ← Weekly exported Google Slides (YYYY-MM-DD-vX.md)
 ├── wiki/
-│   ├── concepts/          ← 核心概念頁面（每個概念一個 .md 檔）
-│   ├── references/        ← 論文與引用頁面（每篇論文一個 .md 檔）
-│   ├── howto/             ← 研究方法與操作流程
-│   ├── evolution/         ← 演化史專區（固定兩個核心檔案）
-│   ├── logs/              ← Q&A 紀錄、操作紀錄
-│   └── artifacts/         ← 自動產出的簡報、摘要等衍生檔案
-├── index.md               ← 全站目錄 + 快速導覽（必須隨時保持最新）
-├── log.md                 ← 時間軸操作紀錄（只能追加，不能刪除）
-└── CLAUDE.md              ← 本檔案
+│   ├── concepts/          ← Core concept pages (one .md file per concept)
+│   ├── references/        ← Paper and citation pages (one .md file per paper)
+│   ├── howto/             ← Research methods and operational workflows
+│   ├── evolution/         ← Research evolution section (two fixed core files)
+│   ├── logs/              ← Q&A records and operation logs
+│   └── artifacts/         ← Auto-generated outputs: slides, summaries, derivatives
+├── index.md               ← Full site index + quick navigation (must always be current)
+├── log.md                 ← Chronological operation log (append only, never delete)
+└── CLAUDE.md              ← This file
 ```
 
 ---
 
-## 四、檔案 Schema 規範
+## 4. File Schema Specifications
 
-### concepts/ 頁面格式
+### concepts/ page format
 ```markdown
 ---
-title: 概念名稱
+title: Concept Name
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 tags: [tag1, tag2]
 source: raw/google-slides/XXXX.md
 ---
 
-# 概念名稱
+# Concept Name
 
-## 定義
+## Definition
 ...
 
-## 在研究中的角色
+## Role in the Research
 ...
 
-## 演化脈絡
-（此概念如何隨研究推進而變化）
+## Evolution Context
+(How this concept has changed as the research has progressed)
 
 ## See Also
-- [[相關概念]]
-- [[相關論文]]
+- [[related concept]]
+- [[related paper]]
 ```
 
-### references/ 頁面格式
+### references/ page format
 ```markdown
 ---
-title: 論文標題
-authors: [作者1, 作者2]
+title: Paper Title
+authors: [Author1, Author2]
 year: YYYY
-venue: 會議/期刊名稱
+venue: Conference/Journal Name
 created: YYYY-MM-DD
 tags: [tag1, tag2]
 ---
 
-# 論文標題
+# Paper Title
 
-## 核心貢獻
+## Core Contribution
 ...
 
-## 與本研究的關聯
+## Relevance to This Research
 ...
 
-## 關鍵方法
+## Key Methods
 ...
 
 ## See Also
-- [[相關概念]]
-- [[相關方法]]
+- [[related concept]]
+- [[related method]]
 ```
 
-### howto/ 頁面格式
+### howto/ page format
 ```markdown
 ---
-title: 方法名稱
+title: Method Name
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---
 
-# 方法名稱
+# Method Name
 
-## 適用場景
+## Applicable Scenarios
 ...
 
-## 步驟
+## Steps
 1. ...
 2. ...
 
-## 注意事項
+## Notes & Caveats
 ...
 
 ## See Also
 ```
 
-### evolution/ 更新格式（追加在檔案末尾）
+### evolution/ update format (append to end of file)
 ```markdown
-### YYYY-MM-DD 更新
-- 研究問題從「...」→「...」
-- 研究方法從「...」→「...」
-- 新增概念：[[概念名]]
-- 來源：[raw/google-slides/XXXX.md](../raw/google-slides/XXXX.md)
+### YYYY-MM-DD Update
+- Research question shifted from "..." → "..."
+- Research method shifted from "..." → "..."
+- New concept added: [[concept name]]
+- Source: [raw/google-slides/XXXX.md](../raw/google-slides/XXXX.md)
 ```
 
 ---
 
-## 五、指令集
+## 5. Command Set
 
-### `Ingest new source: <路徑>`
-執行完整五階段管線：
-1. 讀取 `raw/` 下的指定檔案
-2. Compile：生成或更新 `wiki/concepts/`、`wiki/references/`、`wiki/howto/`
-3. Link：更新相關頁面的雙向連結
-4. 更新 `wiki/evolution/research-question-evolution.md`
-5. 更新 `wiki/evolution/research-method-evolution.md`
-6. 更新 `index.md`
-7. 在 `log.md` 寫入紀錄
-8. 將處理完的原始檔移到 `raw/done/`（如果適合的話）
+### `Ingest new source: <path>`
+Run the full five-stage pipeline:
+1. Read the specified file under `raw/`
+2. Compile: generate or update pages in `wiki/concepts/`, `wiki/references/`, `wiki/howto/`
+3. Link: update bidirectional links on related pages
+4. Update `wiki/evolution/research-question-evolution.md`
+5. Update `wiki/evolution/research-method-evolution.md`
+6. Update `index.md`
+7. Write an entry to `log.md`
+8. Move the processed source file to `raw/done/` (if appropriate)
 
-### `Query: <問題>`
-1. 交叉檢索 `wiki/` 所有相關頁面
-2. 生成回答
-3. 將問答存入 `wiki/logs/YYYY-MM-DD-qna-001.md`
-4. 若回答中有新洞見，回寫至相關 wiki 頁面
+### `Query: <question>`
+1. Cross-reference all relevant pages in `wiki/`
+2. Generate an answer
+3. Save the Q&A to `wiki/logs/YYYY-MM-DD-qna-001.md`
+4. If the answer contains new insights, write them back to relevant wiki pages
 
-### `Add paper: <路徑或 DOI>`
-1. 在 `wiki/references/` 建立論文頁面
-2. 自動分類 tag
-3. 連結到相關 concepts/howto 頁面
-4. 更新 `index.md` 的 References 區塊
-5. 在 `log.md` 寫入紀錄
+### `Add paper: <path or DOI>`
+1. Create a paper page in `wiki/references/`
+2. Auto-assign tags
+3. Link to related concepts/howto pages
+4. Update the References section of `index.md`
+5. Write an entry to `log.md`
 
 ### `Lint`
-1. 掃描所有 wiki 內部連結，回報斷連結
-2. 檢查 evolution/ 時間軸是否有缺口
-3. 檢查 index.md 是否與實際檔案同步
-4. 在 `log.md` 寫入 Lint 報告
+1. Scan all internal wiki links and report broken ones
+2. Check the `evolution/` timeline for gaps
+3. Verify `index.md` is in sync with actual files
+4. Write a Lint report to `log.md`
 
 ---
 
-## 六、log.md 寫入格式
+## 6. log.md Entry Format
 
-每次操作必須在 `log.md` 追加：
+Every operation must append the following to `log.md`:
 
 ```markdown
-## YYYY-MM-DD HH:MM — <操作類型>
+## YYYY-MM-DD HH:MM — <Operation Type>
 
-- **操作**：Ingest / Query / Add paper / Lint
-- **來源**：`raw/...`（如有）
-- **產出**：列出新增或更新的 wiki 頁面
-- **摘要**：一句話說明本次操作的核心變化
+- **Operation**: Ingest / Query / Add paper / Lint
+- **Source**: `raw/...` (if applicable)
+- **Output**: List of new or updated wiki pages
+- **Summary**: One sentence describing the core change from this operation
 ```
 
 ---
 
-## 七、LLM 行為守則
+## 7. LLM Behavioral Rules
 
-1. **不猜測，要引用**：所有 wiki 內容必須有來源連結指向 `raw/` 的原始素材
-2. **不重複，要連結**：相同概念只建一個頁面，其他地方用連結
-3. **追加不覆蓋**：`log.md` 和 `evolution/` 只能追加，不能刪除舊內容
-4. **更新必同步**：每次更新 wiki 頁面後，必須同步更新 `index.md` 和 `log.md`
-5. **保持簡潔**：每個頁面聚焦單一主題，避免一頁包山包海
+1. **Cite, don't speculate**: All wiki content must include a source link pointing to the original material in `raw/`
+2. **Link, don't duplicate**: Each concept gets exactly one page; all other references use links
+3. **Append, never overwrite**: `log.md` and `evolution/` are append-only — never delete old content
+4. **Updates must sync**: After updating any wiki page, always sync `index.md` and `log.md`
+5. **Stay focused**: Each page covers a single topic — avoid cramming everything into one page
