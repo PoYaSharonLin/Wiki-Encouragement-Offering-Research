@@ -1,55 +1,55 @@
 ---
-title: RAM Slider Bar（反應激活模型滑桿）
+title: RAM Slider Bar
 created: 2026-04-07
-updated: 2026-04-07
+updated: 2026-04-13
 tags: [artifact, RAM, slider, mouse-tracking, response-cost]
 source: raw/google-slides/Sharon Research Meeting-2026-04-07.pdf
 ---
 
-# RAM Slider Bar（反應激活模型滑桿）
+# RAM Slider Bar
 
-## 定義
+## Definition
 
-基於 Response Activation Model（RAM）設計的 UI 干預工具，透過增加不誠實回報的「肢體互動成本」來抑制誇大行為。
+A UI intervention tool designed based on the Response Activation Model (RAM), which suppresses exaggeration behavior by increasing the "physical interaction cost" of dishonest reporting.
 
-## 設計理論（RAM 理論）
+## Design Theory (RAM Theory)
 
-引自 Yu (2023)，基於 Welsh & Elliott (2004) 與 Weinmann et al. (2021)：
+Cited from Yu (2023), based on Welsh & Elliott (2004) and Weinmann et al. (2021):
 
 > "When there is intention to misreport, individuals might hesitate between multiple potential target locations, resulting in deviations from the simplest and swiftest possible movement."
 
-因此，若增加與目標不誠實位置之間的肢體互動成本，使用者在實際操作前就會感知到努力程度，進而在行動前直面其不誠實意圖。
+Therefore, by increasing the physical interaction cost to reach a dishonest target location, users perceive the required effort before acting, forcing them to confront their dishonest intention before executing the action.
 
-## 三種起始位置設計
+## Three Starting Position Designs
 
-| 起始位置 | 設計意圖 | 理論說明 |
-|----------|----------|----------|
-| 最左（最不健康） | 實驗組（增加互動成本） | 要報高分需要更多移動，RAM 效應最強 |
-| 中間 | 對照組 | 無偏向 |
-| 最右（最健康） | 反向對照 | 使用者不需「克服」不誠實意圖 |
+| Starting Position | Design Intent | Theoretical Rationale |
+|-------------------|---------------|-----------------------|
+| Far left (least healthy) | Experimental group (increases interaction cost) | Reporting a high score requires more movement; RAM effect is strongest |
+| Middle | Control group | No bias |
+| Far right (most healthy) | Reverse control | Users do not need to "overcome" their dishonest intention |
 
-## 依變項（Mouse-Tracking Metrics）
+## Dependent Variables (Mouse-Tracking Metrics)
 
-| 指標 | 定義 | 誠實 vs 不誠實 |
-|------|------|---------------|
-| Diet Score | 報告的健康分數 | 誠實 → 偏低（更接近真實） |
-| Response Speed | 答題速度 | Ruby 的研究：快 → 更誠實 |
-| Response Correction | 滑桿位置變更次數 | 多 → 更多衝突 → 可能不誠實 |
-| Response Gap | max(Score_t-1 − Score_t) | 大 → 可能蓄意調高分數 |
+| Metric | Definition | Honest vs. Dishonest |
+|--------|------------|----------------------|
+| Diet Score | Reported health score | Honest → lower (closer to true value) |
+| Response Speed | Speed of answering | Ruby's study: faster → more honest |
+| Response Correction | Number of slider position changes | More → more conflict → potentially dishonest |
+| Response Gap | max(Score_t-1 − Score_t) | Larger → possibly deliberate inflation |
 
-## 與 Ruby 研究的對比
+## Comparison with Ruby's Study
 
-| 項目 | Ruby | Sharon |
+| Item | Ruby | Sharon |
 |------|------|--------|
-| RAM 起始位置 | 最不健康端 | 最不健康端（同） |
-| 訊息干預 | Fear Appeal | Promotion-focus × Self-efficacy |
-| 主要追蹤指標 | Speed | Correction + Gap + ML classification |
+| RAM starting position | Least-healthy end | Least-healthy end (same) |
+| Message intervention | Fear Appeal | Promotion-focus × Self-efficacy |
+| Primary tracking metric | Speed | Correction + Gap + ML classification |
 
-## 與鼠標追蹤的整合
+## Integration with Mouse Tracking
 
-RAM slider 蒐集的滑桿軌跡（x 位置 × 時間戳）與 Weinmann (2022) 的鼠標追蹤研究直接相關：
-- 更多偏移（deviation from shortest path）→ 認知衝突（cognitive dissonance/load）
-- 速度較慢 → Cognitive Load Theory
+The slider trajectory (x-position × timestamp) collected by the RAM slider is directly related to Weinmann (2022)'s mouse tracking research:
+- More deviation from shortest path → cognitive conflict (cognitive dissonance/load)
+- Slower speed → Cognitive Load Theory
 
 ## See Also
 - [[wiki/concepts/mouse-movement-metrics.md]]

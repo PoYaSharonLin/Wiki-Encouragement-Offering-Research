@@ -1,60 +1,60 @@
 ---
-title: Promotion-Efficacy Fit（促進效能契合）
+title: Promotion-Efficacy Fit
 created: 2026-04-07
-updated: 2026-04-07
+updated: 2026-04-13
 tags: [core-construct, regulatory-focus, efficacy, intervention, thesis]
 source: raw/google-slides/Sharon Research Meeting-2026-04-07.pdf
 ---
 
-# Promotion-Efficacy Fit（促進效能契合）
+# Promotion-Efficacy Fit
 
-## 定義
+## Definition
 
-本研究的核心干預設計，整合三個組成要素：
-1. **Promotion-focused regulatory framing**：以增益為框架的訊息（強調希望與抱負），誘導促進焦點心態
-2. **Self-efficacy messages**：強調「你做得到」、降低行為執行的內在障礙
-3. **RAM slider bar**：提高不誠實回報的 response cost，起始位置設於最左（最不健康端）
+The core intervention design of this research, integrating three components:
+1. **Promotion-focused regulatory framing**: Gain-framed messages (emphasizing hopes and aspirations) that induce a promotion-focused mindset
+2. **Self-efficacy messages**: Emphasizing "you can do it" to lower internal barriers to performing the behavior
+3. **RAM slider bar**: Increases the response cost of dishonest reporting; default starting position is at the far left (least healthy end)
 
-公式：
+Formula:
 > Promotion Regulatory Fit = multiplicative(promotion-focus × self-efficacy) + additive(↑ misreporting cost)
 
-## 在研究中的角色
+## Role in the Research
 
-作為對比 Fear Appeal（PMT-based）的替代干預策略，本研究主張：
+As an alternative intervention strategy contrasting with Fear Appeal (PMT-based), this study argues:
 
-- 受試者在看到 Promotion-Efficacy Fit 訊息後，會降低不誠實的健康數據回報
-- 促進焦點者（Promotion-focused individuals）在沒有速度壓力的情況下，透過 RAM slider 不會犧牲準確性（Förster et al., 2003 的 Study 4 支持）
-- 干預機制：促進焦點提高 growth motivation → 誘發 reflective decision-making → 鼓勵誠實回報
+- Participants who see the Promotion-Efficacy Fit message will reduce dishonest health data reporting
+- Promotion-focused individuals, without speed pressure, will not sacrifice accuracy when using the RAM slider (supported by Förster et al., 2003, Study 4)
+- Intervention mechanism: promotion focus increases growth motivation → induces reflective decision-making → encourages honest reporting
 
-## 干預設計比較（Ruby vs. Sharon）
+## Intervention Design Comparison (Ruby vs. Sharon)
 
-| 項目 | Ruby（Fear Appeal） | Sharon（Promotion-Efficacy Fit） |
-|------|---------------------|--------------------------------|
-| 理論基礎 | PMT + RAM | RFT + Efficacy + RAM |
-| 核心目標 | discourage dishonesty | encourage honesty |
-| 訊息設計 | 恐懼訴求（負面後果） | 促進焦點 × 自我效能 |
-| Slider 設計 | 起始最不健康端 | 起始最不健康端（RAM） |
-| 依變項 | Diet score + Response speed | Diet score + Response correction + Response gap |
+| Item | Ruby (Fear Appeal) | Sharon (Promotion-Efficacy Fit) |
+|------|--------------------|---------------------------------|
+| Theoretical basis | PMT + RAM | RFT + Efficacy + RAM |
+| Core goal | Discourage dishonesty | Encourage honesty |
+| Message design | Fear appeal (negative consequences) | Promotion focus × Self-efficacy |
+| Slider design | Starting at least-healthy end | Starting at least-healthy end (RAM) |
+| Dependent variables | Diet score + Response speed | Diet score + Response correction + Response gap |
 
-## 實驗設計（3×2 Between-Subjects）
+## Experimental Design (3×2 Between-Subjects)
 
-| 組別 | 說明 |
-|------|------|
-| RFT(promotion) + RAM slider | 主要干預 |
-| RFT(prevention) + RAM slider | 對照 |
-| RFT(promotion) + Control slider | 無 RAM |
-| RFT(prevention) + Control slider | 無 RAM |
-| No RFT + RAM slider | 無訊息 |
-| No RFT + Control slider | 完全對照 |
+| Condition | Description |
+|-----------|-------------|
+| RFT(promotion) + RAM slider | Primary intervention |
+| RFT(prevention) + RAM slider | Control |
+| RFT(promotion) + Control slider | No RAM |
+| RFT(prevention) + Control slider | No RAM |
+| No RFT + RAM slider | No message |
+| No RFT + Control slider | Full control |
 
-## 演化脈絡
+## Evolution Timeline
 
-- 2025-10-28：最初以 Positive Appeals vs. Fear Appeals 框架討論；考慮 Mindfulness 作為中立干預
-- 2025-11-04：引入 Regulatory Focus Theory 與 RAM slider 的結合；對比 Ruby 的研究
-- 2025-11-25：深入分析 Keller (2006)，確立 Promotion-focus × Self-efficacy 的配對機制
-- 2025-12-02：正式寫入 Thesis Proposal Abstract，命名為 "Promotion Efficacy Fit"
-- 2026-02-10：確認 Fear Appeal = Prevention orientation，確立理論對比基礎
-- 2026-04-07：當前版本，持續發展實驗平台
+- 2025-10-28: Initially discussed under the Positive Appeals vs. Fear Appeals framework; considered Mindfulness as a neutral intervention
+- 2025-11-04: Introduced the combination of Regulatory Focus Theory and RAM slider; contrasted with Ruby's research
+- 2025-11-25: Deeper analysis of Keller (2006); established the pairing mechanism of Promotion-focus × Self-efficacy
+- 2025-12-02: Formally written into Thesis Proposal Abstract, named "Promotion Efficacy Fit"
+- 2026-02-10: Confirmed Fear Appeal = Prevention orientation; established the theoretical contrast basis
+- 2026-04-07: Current version, ongoing development of the experimental platform
 
 ## See Also
 - [[wiki/concepts/regulatory-focus-theory.md]]

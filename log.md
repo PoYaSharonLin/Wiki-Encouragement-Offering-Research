@@ -60,3 +60,23 @@
   - 新增 `wiki/howto/pdf-ingest-procedure.md`（PDF 分批讀取→Compile→Link→更新 index/log 的完整 SOP）
   - 更新 `index.md`（新增 howto 條目）
 - **摘要**：將 PDF Ingest 的操作步驟記錄為可複用的 howto 頁面，供未來對話直接參照。
+
+---
+
+## 2026-04-13 14:00 — Translation
+
+- **Operation**: Translation
+- **Source**: `wiki/concepts/` (all 11 concept pages)
+- **Output**: All 11 concept pages updated with full English translation (frontmatter titles, section headings, and body content); `updated` dates set to 2026-04-13
+  - `wiki/concepts/promotion-efficacy-fit.md`
+  - `wiki/concepts/regulatory-focus-theory.md`
+  - `wiki/concepts/protection-motivation-theory.md`
+  - `wiki/concepts/ram-slider.md`
+  - `wiki/concepts/signal-transform-strategies.md`
+  - `wiki/concepts/honesty-humility.md`
+  - `wiki/concepts/self-construal.md`
+  - `wiki/concepts/self-concept-clarity.md`
+  - `wiki/concepts/self-regulation.md`
+  - `wiki/concepts/protobuf-vs-msgpack.md`
+  - `wiki/concepts/mouse-movement-metrics.md`
+- **Summary**: Translated all Chinese and mixed-language content in the concepts folder into English; structure, internal links, and technical terms preserved.

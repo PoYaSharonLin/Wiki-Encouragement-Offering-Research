@@ -1,44 +1,44 @@
 ---
-title: Honesty-Humility（誠實-謙遜，HEXACO）
+title: Honesty-Humility (HEXACO)
 created: 2026-04-07
-updated: 2026-04-07
+updated: 2026-04-13
 tags: [control-variable, HEXACO, personality, honest-character]
 source: raw/google-slides/Sharon Research Meeting-2026-04-07.pdf
 ---
 
-# Honesty-Humility（誠實-謙遜，HEXACO）
+# Honesty-Humility (HEXACO)
 
-## 定義
+## Definition
 
-HEXACO 人格模型（Ashton & Lee, 2009, 2014）中的一個維度，由四個 facets 組成：
+One dimension in the HEXACO personality model (Ashton & Lee, 2009, 2014), composed of four facets:
 
-| Facet | 核心含義 | 正向題示例 |
-|-------|---------|----------|
-| **Sincerity（真誠）** | 不奉承巴結 | (6) 「即使我相信用巴結的方式可以得到獎勵，我也不會做。」|
-| **Fairness（公平）** | 不欺騙、不偷竊 | (36) 「即使很有價值，我也絕不會接受賄賂。」|
-| **Greed-Avoidance（避貪）** | 不看重財富地位 | (18) 「對我來說，擁有很多金錢不是特別重要。」|
-| **Modesty（謙遜）** | 不自認高人一等 | 反向題：(24R) 「我認為我比一般人有資格得到更多的尊重。」|
+| Facet | Core Meaning | Example Item (keyed positive) |
+|-------|--------------|-------------------------------|
+| **Sincerity** | Does not flatter or ingratiate | (6) "I wouldn't use flattery to get a raise or promotion at work, even if I thought it would work." |
+| **Fairness** | Does not deceive or steal | (36) "I would never accept a bribe, even if it were very large." |
+| **Greed-Avoidance** | Does not value wealth or status | (18) "Having a lot of money is not especially important to me." |
+| **Modesty** | Does not consider oneself superior | Reverse-keyed: (24R) "I think that I am entitled to more respect than the average person is." |
 
-## 在研究中的角色
+## Role in the Research
 
-作為 **控制變項**（Control Variable），目的是排除「受試者本身就更誠實」的混淆效應。
+Serves as a **control variable** to rule out the confounding effect that participants who are inherently more honest may respond differently to the intervention.
 
-理論邏輯：若正向訊息組的受試者原本就有較高的 Honesty-Humility，則不能將誠實回報歸因於干預。
+Theoretical rationale: If participants in the positive-message group already have higher Honesty-Humility, honest reporting cannot be attributed to the intervention alone.
 
-## 量表選題策略（2026-03-10 / 2026-04-07 更新）
+## Scale Item Selection Strategy (Updated 2026-03-10 / 2026-04-07)
 
-來自 van Rensburg et al. (2018) 的研究：
-- 四個 facets 對學術不誠實行為的負向關聯方向一致（可使用部分題目）
-- **Greed Avoidance 是最顯著的預測因子**（β significant, p = 0.02，解釋 72.31% 變異）
-- 在無金錢獎勵情境下，**Fairness** 預計比 Greed Avoidance 更能預測健康數據的誠實回報
+From van Rensburg et al. (2018):
+- All four facets show a consistent negative association with academic dishonesty (partial items can be used)
+- **Greed Avoidance is the most significant predictor** (β significant, p = 0.02, explaining 72.31% of variance)
+- In a context without monetary rewards, **Fairness** is expected to predict honest health data reporting better than Greed Avoidance
 
-**本研究策略**：每個 facet 選取 2 題（共 8 題），僅選正向題（避免反向題的填答偏差）
+**This study's strategy**: Select 2 items per facet (8 items total), using only positively keyed items (to avoid response bias from reverse-keyed items)
 
-## 爭議點
+## Caveats
 
-van Rensburg et al. (2018) 的測量限制：
-- 無法區分「作弊但否認」vs「不作弊但宣稱作弊」的情況
-- 實驗在無監督（線上）環境下進行，可能有未被捕捉的作弊行為
+Measurement limitations in van Rensburg et al. (2018):
+- Cannot distinguish between "cheated but denied it" vs. "did not cheat but claimed to have cheated"
+- Study conducted in an unsupervised (online) environment; some cheating behavior may have gone undetected
 
 ## See Also
 - [[wiki/concepts/self-construal.md]]

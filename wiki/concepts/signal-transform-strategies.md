@@ -1,59 +1,59 @@
 ---
-title: Signal Transform Strategies（信號轉換策略）
+title: Signal Transform Strategies
 created: 2026-04-07
-updated: 2026-04-07
+updated: 2026-04-13
 tags: [signal-processing, DFT, STFT, EMD, feature-engineering, 2026-04-07]
 source: raw/google-slides/Sharon Research Meeting-2026-04-07.pdf
 ---
 
-# Signal Transform Strategies（信號轉換策略）
+# Signal Transform Strategies
 
-## 概述
+## Overview
 
-本頁面整理 2026-04-07 研究會議中對不同信號轉換方法的系統性比較，討論其在鼠標移動分析中的適用性。
+This page summarizes the systematic comparison of different signal transform methods discussed in the 2026-04-07 research meeting, focusing on their applicability to mouse movement analysis.
 
-## 四種主要方法比較
+## Comparison of Four Main Methods
 
-| 方法 | 時間資訊 | 假設 | 輸出 | 典型輸入 | 適用場景 |
-|------|----------|------|------|---------|---------|
-| **DFT**（離散傅立葉變換） | ❌ | Stationary | 頻率成分 | `[value(float)]` 均勻採樣 | 音頻音調、EEG 基線頻帶 |
-| **STFT**（短時傅立葉變換） | ✅（有限） | Locally stationary | 時頻圖 | `[ts_ms, value(float)]` | 語音識別、EEG alpha/beta/gamma |
-| **2D-DFT** | ❌（無時間軸） | Stationary | 頻率圖像 | `image[h][w]` 二維矩陣 | 圖像壓縮（JPEG）、紋理識別 |
-| **EMD**（經驗模態分解） | ✅（自適應） | None（可處理非線性） | IMFs（本徵模態函數） | `[ts_ms, value(float)]` 非平穩序列 | 生醫信號（EEG/ECG）、金融時序、故障偵測 |
+| Method | Temporal Info | Assumption | Output | Typical Input | Use Cases |
+|--------|---------------|------------|--------|---------------|-----------|
+| **DFT** (Discrete Fourier Transform) | ❌ | Stationary | Frequency components | `[value(float)]` uniformly sampled | Audio pitch, EEG baseline bands |
+| **STFT** (Short-Time Fourier Transform) | ✅ (limited) | Locally stationary | Time-frequency spectrogram | `[ts_ms, value(float)]` | Speech recognition, EEG alpha/beta/gamma |
+| **2D-DFT** | ❌ (no time axis) | Stationary | Frequency image | `image[h][w]` 2D matrix | Image compression (JPEG), texture recognition |
+| **EMD** (Empirical Mode Decomposition) | ✅ (adaptive) | None (handles nonlinearity) | IMFs (Intrinsic Mode Functions) | `[ts_ms, value(float)]` non-stationary series | Biomedical signals (EEG/ECG), financial time series, fault detection |
 
-## 對鼠標移動分析的適用性
+## Applicability to Mouse Movement Analysis
 
-### 結論（2026-04-07）
+### Conclusion (2026-04-07)
 
-> 雖然信號轉換可以成功分解鼠標移動信號，但缺乏清晰的頻率-行為映射。
-> 例如：10 Hz 的移動代表什麼行為？與 5 Hz 有何行為差異？
+> Although signal transforms can successfully decompose mouse movement signals, there is a lack of clear frequency-behavior mapping.
+> For example: what behavior does a 10 Hz movement represent? How does it differ behaviorally from 5 Hz?
 
-**對比**：在 EEG 研究中，alpha（8-13 Hz）= 放鬆、beta（14-30 Hz）= 主動思考，有明確定義。鼠標移動目前無此對應。
+**Contrast**: In EEG research, alpha (8–13 Hz) = relaxation, beta (14–30 Hz) = active thinking — clear definitions exist. Mouse movement currently has no such correspondence.
 
-### 潛在研究用途
+### Potential Research Uses
 
-**用途 1：特徵工程的前驅**
-- 即使無法解釋個別頻率，信號轉換可以展示「鼠標移動中存在可提取的信號」的潛力
-- 可成為預測模型的重要特徵
+**Use 1: Precursor to Feature Engineering**
+- Even without interpreting individual frequencies, signal transforms can demonstrate the potential that extractable signals exist in mouse movement data
+- Can serve as important features for predictive models
 
-**用途 2：比較性研究**
-- 若「鼓勵提供」組在高頻帶的功率持續較低 → 有實證連結：在「鼓勵提供」條件下，使用者傾向減少微幅修正（micro-corrections）
+**Use 2: Comparative Research**
+- If the "encouragement offering" group consistently shows lower power in high-frequency bands → empirical link: users in the "encouragement offering" condition tend to make fewer micro-corrections
 
-## 採樣方法與適配的 Signal Transform
+## Sampling Methods and Matching Signal Transforms
 
-鼠標移動的採樣方法直接決定可使用的信號轉換工具：
+The sampling method for mouse movement directly determines the applicable signal transform tools:
 
-| 採樣方法 | 適配工具 |
-|----------|---------|
-| Window size（固定窗口點數） | STFT |
-| Fixed timing（固定時間採樣） | DFT |
-| Fixed pixel range（固定像素距離） | 2D-DFT |
-| Event type changes（事件類型切換） | EMD |
+| Sampling Method | Matching Tool |
+|-----------------|---------------|
+| Window size (fixed point count per segment) | STFT |
+| Fixed timing (fixed-interval sampling) | DFT |
+| Fixed pixel range (fixed pixel distance) | 2D-DFT |
+| Event type changes (transition-based segmentation) | EMD |
 
-## 建議用法（本研究）
+## Recommended Usage (This Research)
 
-- 採用 EMD 作為探索性資料分析（EDA），檢查曲率、抖動等特徵是否對長反應時間有較強貢獻
-- 非主要假設驗證工具，而是補充性分析
+- Use EMD as exploratory data analysis (EDA) to examine whether features such as curvature and jitter contribute more strongly to long response times
+- Not the primary hypothesis-testing tool, but a supplementary analysis
 
 ## See Also
 - [[wiki/concepts/mouse-movement-metrics.md]]

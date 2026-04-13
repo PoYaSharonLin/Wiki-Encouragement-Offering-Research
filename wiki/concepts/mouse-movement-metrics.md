@@ -1,23 +1,23 @@
 ---
-title: Mouse Movement Metrics（鼠標移動指標）
+title: Mouse Movement Metrics
 created: 2026-04-07
-updated: 2026-04-07
+updated: 2026-04-13
 tags: [mouse-tracking, metrics, feature-engineering, signal-processing]
 source: raw/google-slides/Sharon Research Meeting-2026-04-07.pdf
 ---
 
-# Mouse Movement Metrics（鼠標移動指標）
+# Mouse Movement Metrics
 
-## 資料格式
+## Data Format
 
-最基本的原始資料格式為 `[x, y, timestamp_ms]`。前端以 event type 分組儲存：
+The most basic raw data format is `[x, y, timestamp_ms]`. The frontend stores data grouped by event type:
 
 ```json
 { "type": "MM", "events": [[x, y, "mousemove", ts], ...] }
 { "type": "PC", "events": [[x, y, "mousedown", ts], ...] }
 ```
 
-## 四種採樣方法（決定 DB Schema）
+## Four Sampling Methods (Determines DB Schema)
 
 | Method | Description | Signal Processing Fit | Citation |
 |--------|-------------|----------------------|----------|
@@ -26,55 +26,55 @@ source: raw/google-slides/Sharon Research Meeting-2026-04-07.pdf
 | Fixed pixel ranges in digital signing 🖌️ | Record when cursor moves >N px, common in e-signature | 2D-DFT | Nossam et al. (2024) |
 | Event type changes | Segment by mousemove / mousedown / click transitions | EMD | Khan (2024); Weinmann et al. (2022) |
 
-**決策（2026-03-31）**：採樣方法決定資料庫 schema 與可用的特徵工程工具。
+**Decision (2026-03-31)**: The sampling method determines the database schema and available feature engineering tools.
 
-## 文獻中的主要指標分類
+## Key Metric Categories from the Literature
 
-### Distance（距離）
+### Distance
 - Traveled Distance / Curve length (Khan et al., 2024)
 - Deviation Distance (Khan et al., 2024; Weinmann et al., 2022)
 - Straightness / Efficiency = straight-line / actual path (Khan et al., 2024; Weinmann et al., 2022)
 
-### Time（時間）
-- Reaction Time (RT)：問題出現到點擊回應的時間 (Khan et al., 2024; Mazza et al., 2020)
-- Maximum Deviation Time (MD-time)：到達最大偏移的時間 (Khan et al., 2024)
+### Time
+- Reaction Time (RT): Time from question appearance to click response (Khan et al., 2024; Mazza et al., 2020)
+- Maximum Deviation Time (MD-time): Time to reach maximum deviation (Khan et al., 2024)
 
-### Velocity（速度）
+### Velocity
 - Movement Speed (Weinmann et al., 2022)
 - Velocity / Horizontal / Vertical velocity (Khan et al., 2024)
 - Tangential / Angular velocity (Khan et al., 2024)
 
-### Acceleration（加速度）
+### Acceleration
 - Horizontal / Vertical acceleration (Khan et al., 2024)
-- Tangential Jerk（加加速度）(Khan et al., 2024)
+- Tangential Jerk (rate of change of acceleration) (Khan et al., 2024)
 
-### Curvature（曲率）
+### Curvature
 - Curvature / Rate of Curvature (Khan et al., 2024; Mazza et al., 2020)
 - Curvature Velocity (Khan et al., 2024)
 
-### Shapes（形狀特徵）
+### Shapes
 - Angle of Movement / Total Angles / Bending Energy (Khan et al., 2024)
 - Self-Intersection (Khan et al., 2024)
-- Jitter（抖動）(Khan et al., 2024; Mazza et al., 2020)
+- Jitter (Khan et al., 2024; Mazza et al., 2020)
 - Central Moments (Khan et al., 2024)
 
-## 本研究採用的關鍵指標（2026-03-31 決策）
+## Key Metrics Adopted in This Research (Decision 2026-03-31)
 
-- **Reaction Time (RT)**：問題出現到滑桿互動完成的時間
-- **Maximum Deviation (MD)**：實際軌跡與理想直線的最大垂直距離
-- 以 RT 和 MD 作為 ground truth 驗證「鼓勵提供」功能的有效性
+- **Reaction Time (RT)**: Time from question appearance to completion of slider interaction
+- **Maximum Deviation (MD)**: Maximum perpendicular distance between the actual trajectory and the ideal straight line
+- RT and MD serve as ground truth to validate the effectiveness of the "encouragement offering" feature
 
-**探索性分析**：使用 EMD（Empirical Mode Decomposition）分析曲率、抖動等特徵與反應時間的關係
+**Exploratory analysis**: Use EMD (Empirical Mode Decomposition) to analyze the relationship between features such as curvature and jitter, and response time
 
-## Signal Transform Strategies 的限制（2026-04-07 結論）
+## Limitations of Signal Transform Strategies (Conclusion 2026-04-07)
 
-雖然信號轉換（DFT、STFT、EMD）能將鼠標移動分解為不同頻率成分，但：
-- **缺乏有意義的頻率映射**：10 Hz 的移動代表什麼行為意義？如何與 5 Hz 區別？
-- 對比 EEG（alpha/beta/gamma 頻帶有已知對應）或通訊信號，鼠標移動缺乏事先定義的頻率含義
+Although signal transforms (DFT, STFT, EMD) can decompose mouse movements into different frequency components:
+- **Lack of meaningful frequency mapping**: What behavioral meaning does a 10 Hz movement have? How does it differ from 5 Hz?
+- Unlike EEG (where alpha/beta/gamma bands have known behavioral correlates) or communication signals, mouse movement lacks pre-defined frequency meanings
 
-Signal Transform 的潛在用途仍在於：
-1. 作為特徵工程的前驅（探索信號潛力）
-2. 作為比較性研究（高頻 vs 低頻特徵的組間差異）
+Potential uses of Signal Transform remain:
+1. As a precursor to feature engineering (exploring signal potential)
+2. As comparative research (between-group differences in high-frequency vs. low-frequency features)
 
 ## See Also
 - [[wiki/concepts/signal-transform-strategies.md]]
